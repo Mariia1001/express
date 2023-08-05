@@ -1,6 +1,7 @@
 
 const express = require('express');
 const listEditRouter = express.Router();
+const { handlePostPutErrors } = require('./error-handling');
 
 let tasks = [
     {
@@ -45,4 +46,7 @@ listEditRouter.put('/update/:id', (req, res) => {
     res.json({ message: 'Tarea actualizada exitosamente.' });
 });
 
+listEditRouter.use(handlePostPutErrors);
+
+module.exports = listEditRouter;
 module.exports = listEditRouter;
