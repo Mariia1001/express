@@ -3,6 +3,7 @@ const express = require('express');
 const app = express();
 const listViewRouter = require('./list-view-router');
 const listEditRouter = require('./list-edit-router');
+const taskAPI = require('./task-api');
 
 const validateMethods = (req, res, next) => {
     const validMethods = ['GET', 'POST', 'PUT', 'DELETE'];
@@ -15,6 +16,7 @@ const validateMethods = (req, res, next) => {
 app.use(express.json());
 
 app.use(validateMethods);
+app.use('/api', taskAPI);
 
 app.use('/tasks/view', listViewRouter);
 app.use('/tasks/edit', listEditRouter);
